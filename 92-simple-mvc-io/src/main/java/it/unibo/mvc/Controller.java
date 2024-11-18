@@ -53,7 +53,7 @@ public final class Controller {
      */
     public void write(final String string) throws IOException {
         try (PrintStream ps = new PrintStream(file, StandardCharsets.UTF_8)) {
-            ps.println(string);
+            ps.print(string);
         }
     }
 }
