@@ -79,11 +79,10 @@ public class BadIOGUI {
         read.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                System.out.println("Read button pressed."); // NOPMD: allowed because required by excercise
                 try {
                     final List<String> lines = Files.readAllLines(new File(PATH).toPath());
                     for (final String string : lines) {
-                        System.out.println(string + "\n"); // NOPMD: allowed because required by excercise
+                        System.out.println(string + "\n"); // NOPMD: allowed because required by exercise
                     }
                 } catch (final IOException e1) {
                     JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
