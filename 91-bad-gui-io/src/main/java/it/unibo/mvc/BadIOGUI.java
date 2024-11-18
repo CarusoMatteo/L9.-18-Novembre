@@ -14,8 +14,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-// import java.nio.file.Files;
-// import java.util.List;
+import java.nio.file.Files;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -70,7 +70,7 @@ public class BadIOGUI {
                  */
                 try (PrintStream ps = new PrintStream(PATH, StandardCharsets.UTF_8)) {
                     ps.print(randomGenerator.nextInt());
-                } catch (IOException e1) {
+                } catch (final IOException e1) {
                     JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
                     e1.printStackTrace(); // NOPMD: allowed as this is just an exercise
                 }
@@ -80,6 +80,15 @@ public class BadIOGUI {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 System.out.println("Read button pressed."); // NOPMD: allowed because required by excercise
+                try {
+                    final List<String> lines = Files.readAllLines(new File(PATH).toPath());
+                    for (final String string : lines) {
+                        System.out.println(string + "\n"); // NOPMD: allowed because required by excercise
+                    }
+                } catch (final IOException e1) {
+                    JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
+                    e1.printStackTrace(); // NOPMD: allowed as this is just an exercise
+                }
             }
         });
     }
