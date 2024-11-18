@@ -15,29 +15,28 @@ import java.io.IOException;
 
 /**
  * A very simple program using a graphical interface.
- * 
  */
-public final class SimpleGUI {
+public class SimpleGUI {
 
     private static final int PROPORTION = 5;
 
     private final JFrame frame = new JFrame("Simple File Read");
+    private final JPanel mainCanvas = new JPanel();
     private final Controller controller = new Controller();
 
     /**
      * Creates a new SimpleGUI.
      */
     public SimpleGUI() {
-        final JPanel canvas = new JPanel();
-        canvas.setLayout(new BorderLayout());
+        mainCanvas.setLayout(new BorderLayout());
 
         final JTextArea text = new JTextArea();
         final JButton saveButton = new JButton("Save");
 
-        canvas.add(text, BorderLayout.CENTER);
-        canvas.add(saveButton, BorderLayout.SOUTH);
+        mainCanvas.add(text, BorderLayout.CENTER);
+        mainCanvas.add(saveButton, BorderLayout.SOUTH);
 
-        frame.setContentPane(canvas);
+        frame.setContentPane(mainCanvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         saveButton.addActionListener(new ActionListener() {
@@ -53,7 +52,31 @@ public final class SimpleGUI {
         });
     }
 
-    private void display() {
+    /**
+     * @return the frame of the GUI.
+     */
+    protected JFrame getFrame() {
+        return this.frame;
+    }
+
+    /**
+     * @return the main canvas of the GUI.
+     */
+    protected JPanel getMainCanvas() {
+        return this.mainCanvas;
+    }
+
+    /**
+     * @return the controller.
+     */
+    protected Controller getController() {
+        return this.controller;
+    }
+
+    /**
+     * Makes the GUI visible.
+     */
+    protected void display() {
         /*
          * Make the frame one fifth the resolution of the screen. This very method is
          * enough for a single screen setup. In case of multiple monitors, the
